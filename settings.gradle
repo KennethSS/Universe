@@ -1,2 +1,3 @@
 rootProject.name = "Universe"
 include ':app'
+include ':universe'
