@@ -1,12 +1,14 @@
 package com.solar.universe.binding
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 
-class UniverseActivity<V : ViewDataBinding> constructor(
+abstract class UniverseDataActivity<V : ViewDataBinding> constructor(
     @LayoutRes private val layoutId: Int
 ) : AppCompatActivity() {
 

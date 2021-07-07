@@ -1,11 +1,17 @@
 package com.solar.universe
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.solar.universe.binding.UniverseViewActivity
+import com.solar.universe.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : UniverseViewActivity<ActivityMainBinding>() {
+
+    init {
+        bindingInitializer = ActivityMainBinding::inflate
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding.tvSample.text = "HI"
     }
 }
