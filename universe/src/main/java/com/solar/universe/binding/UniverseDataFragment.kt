@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-abstract class UniverseFragment<B : ViewDataBinding> constructor(
+abstract class UniverseDataFragment<B : ViewDataBinding> constructor(
     @LayoutRes private val layoutId: Int
 ) : Fragment() {
 
