@@ -5,8 +5,6 @@ import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.solar.universe.glide.GlideApp
-import com.solar.universe.glide.GlideAppModule
 
 @BindingAdapter(value = ["load"])
 fun ImageView.loadUrl(url: String?) {
