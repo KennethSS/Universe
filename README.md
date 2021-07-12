@@ -35,22 +35,33 @@ class SampleViewFragment : UniverseViewFragment<FragmentMainBinding>(
 ### RecyclerView (ViewBinding)
 
 ```kotlin
-class SampleAdapter : UniverseRecyclerViewAdapter<UniverseItemModel>() {
+class SampleAdapter : UniverseRecyclerViewAdapter() {
+
+  override fun getHolder(viewType: Int, view: View): UniverseViewHolder = when (viewType) {
+    R.layout.item_some -> SampleViewHolder(ItemSomeBinding.bind(view))
+    else -> OtherHolder(ItemOtherBinding.bind(view))
+  }
+
+  override fun bind(holder: UniverseViewHolder, item: UniverseItemModel) = when(holder){
+    is SampleViewHolder -> holder.bind(item as SomeModel)
+    is OtherHolder -> holder.bind(item as OtherModel)
+    else -> { }
+  }
 
   override fun getItemViewType(position: Int): Int = when(list[position]) {
     is SomeModel -> R.layout.item_some
     else -> R.layout.item_other
   }
-
-  override fun holder(viewType: Int, view: View): UniverseViewHolder<UniverseItemModel> {
-    return when(viewType) {
-      R.layout.item_some -> SampleViewHolder(ItemSomeBinding.bind(view))
-      else -> OtherHolder(ItemOtherBinding.bind(view))
-    }
-  }
 }
 
-class SampleViewHolder(binding: ItemSomeBinding) : UniverseViewHolder<UniverseItemModel>(binding)
+class SampleViewHolder(
+  private val binding: ItemSomeBinding
+) : UniverseViewHolder(binding.root) {
+
+  fun bind(item: SomeModel) {
+    binding.tvTitle.text = item.title
+  }
+}
 
 data class SomeModel(
   val title: String
