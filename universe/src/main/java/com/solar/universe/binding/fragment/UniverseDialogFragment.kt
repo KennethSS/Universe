@@ -1,17 +1,18 @@
-package com.solar.universe.binding
+package com.solar.universe.binding.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 
-abstract class UniverseDataFragment<B : ViewDataBinding> constructor(
+abstract class UniverseDialogFragment<B: ViewDataBinding> constructor(
     @LayoutRes private val layoutId: Int
-) : Fragment() {
+): AppCompatDialogFragment() {
 
     private var _binding: B? = null
 
@@ -19,6 +20,16 @@ abstract class UniverseDataFragment<B : ViewDataBinding> constructor(
         get() = checkNotNull(_binding) {
             "Fragment $this binding cannot be accessed before onCreateView() or after onDestroyView()"
         }
+
+    fun showDialog(fragmentManager: FragmentManager?, tag: String) {
+        fragmentManager?.let {
+            show(it, tag)
+        }
+    }
+
+    fun dismissDialog() {
+        dismiss()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,9 +45,5 @@ abstract class UniverseDataFragment<B : ViewDataBinding> constructor(
         super.onDestroyView()
         _binding?.unbind()
         _binding = null
-    }
-
-    protected inline fun binding(block: B.() -> Unit): B {
-        return binding.apply(block)
     }
 }

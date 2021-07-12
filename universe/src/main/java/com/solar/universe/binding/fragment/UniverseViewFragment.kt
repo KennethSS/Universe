@@ -1,4 +1,4 @@
-package com.solar.universe.binding
+package com.solar.universe.binding.fragment
 
 import android.os.Bundle
 import android.view.View

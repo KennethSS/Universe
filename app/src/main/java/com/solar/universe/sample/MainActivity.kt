@@ -1,7 +1,7 @@
 package com.solar.universe.sample
 
 import android.os.Bundle
-import com.solar.universe.binding.UniverseViewActivity
+import com.solar.universe.binding.activity.UniverseViewActivity
 import com.solar.universe.sample.databinding.ActivityMainBinding
 
 class MainActivity : UniverseViewActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {

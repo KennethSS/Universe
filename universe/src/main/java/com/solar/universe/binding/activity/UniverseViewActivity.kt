@@ -1,11 +1,10 @@
-package com.solar.universe.binding
+package com.solar.universe.binding.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.solar.universe.binding.viewbinding.ActivityViewBindingProperty
-import com.solar.universe.extension.viewBinding
 
 abstract class UniverseViewActivity<T: ViewBinding>(
     initialLayoutInflater: (LayoutInflater) -> T
