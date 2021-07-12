@@ -4,38 +4,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 
-abstract class UniverseRecyclerViewAdapter<T>(
-  val list: ArrayList<T> = arrayListOf(),
-) : RecyclerView.Adapter<UniverseViewHolder<T>>() {
+abstract class UniverseRecyclerViewAdapter(
+  val list: ArrayList<UniverseItemModel> = arrayListOf(),
+) : RecyclerView.Adapter<UniverseViewHolder>() {
 
-  abstract fun holder(viewType: Int, view: View): UniverseViewHolder<T>
+  abstract fun getHolder(viewType: Int, view: View): UniverseViewHolder
 
-  fun add(item: T) {
+  abstract fun bind(holder: UniverseViewHolder, item: UniverseItemModel)
+
+  fun add(item: UniverseItemModel) {
     this.list.add(item)
     notifyItemInserted(this.list.count() - 1)
   }
 
-  fun addAll(list: List<T>) {
+  fun addAll(list: List<UniverseItemModel>) {
     val previous = this.list.size
     this.list.addAll(list)
     notifyItemRangeInserted(previous, list.size)
   }
 
-  fun update(position: Int, item: T) {
+  fun update(position: Int, item: UniverseItemModel) {
     list[position] = item
     notifyItemChanged(position, item)
   }
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UniverseViewHolder<T> {
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UniverseViewHolder {
     val inflater = LayoutInflater.from(parent.context)
     val view = inflater.inflate(viewType, parent, false)
-    return holder(viewType, view)
+    return getHolder(viewType, view)
   }
 
-  override fun onBindViewHolder(holder: UniverseViewHolder<T>, position: Int) {
-    val item = list[position]
+  override fun onBindViewHolder(holder: UniverseViewHolder, position: Int) {
+    bind(holder, list[position])
   }
 
   override fun getItemCount(): Int = list.count()
