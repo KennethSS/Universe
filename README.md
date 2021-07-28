@@ -1,8 +1,34 @@
 ## Usage
 
+<h1 align="center">Universe</h1></br>
+
+<p align="center">
+Use common features to help you quickly develop Android
+</p>
 
 
 
+### Dependency Gradle 
+
+Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
+
+```groovy
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
+And add a dependency code to your **module**'s `build.gradle` file
+
+```groovy
+dependencies {
+  implementation 'com.github.kennethss:universe:1.0.5'
+}
+```
+
+### 
 
 ### Activity (ViewBinding)
 
@@ -67,4 +93,3 @@ data class SomeModel(
   val title: String
 ) : UniverseItemModel
 ```
-
